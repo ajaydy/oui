@@ -1,0 +1,22 @@
+{
+  "en-US": {
+    "HomeProxy": "HomeProxy",
+    "General": "General",
+    "Routing mode": "Routing mode",
+    "Auto update": "Auto-update subscriptions daily",
+    "Nodes": "Nodes",
+    "Add Node": "Add Node",
+    "Save": "Save",
+    "Save & Apply": "Save & Apply"
+  },
+  "zh-CN": {
+    "HomeProxy": "家庭代理",
+    "General": "常规设置",
+    "Routing mode": "路由模式",
+    "Auto update": "每日自动更新订阅",
+    "Nodes": "节点",
+    "Add Node": "添加节点",
+    "Save": "保存",
+    "Save & Apply": "保存并应用"
+  }
+}

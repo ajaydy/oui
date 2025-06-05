@@ -1,0 +1,12 @@
+{
+    "/services/homeproxy": {
+        "title": "HomeProxy",
+        "view": "homeproxy",
+        "icon": "mdi-shield-home",
+        "order": 60,
+        "locales": {
+            "en-US": "HomeProxy",
+            "zh-CN": "\u5bb6\u5ead\u4ee3\u7406"
+        }
+    }
+}
