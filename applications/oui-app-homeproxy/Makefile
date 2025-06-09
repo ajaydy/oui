@@ -1,13 +1,11 @@
-include $(TOPDIR)/rules.mk          # always first
 
-APP_TITLE     := OUI built-in HomeProxy
-APP_NAME      := homeproxy
-APP_DEPENDS   := +sing-box +firewall4 +kmod-nft-tproxy
 
-# just list what should survive upgrades / sysupgrade
-APP_CONFFILES := /etc/config/homeproxy \
-                 /etc/homeproxy/certs/ \
-                 /etc/homeproxy/resources/ \
-                 /etc/homeproxy/ruleset/
+include $(TOPDIR)/rules.mk
 
-include ../../oui.mk                # always last
+APP_TITLE:=OUI built-in homeproxy
+APP_NAME:=homeproxy
+
+APP_DEPENDS:= +sing-box +firewall4 +kmod-nft-tproxy
+include ../../oui.mk
+
+
