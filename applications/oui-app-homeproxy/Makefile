@@ -16,9 +16,4 @@ APP_CONFFILES := /etc/config/homeproxy \
                  /etc/homeproxy/ruleset/
 include ../../oui.mk
 
-define Package/$(PKG_NAME)/install
-	$(call Package/$(PKG_NAME)/install/default,$(1))
-	$(CP) $(CURDIR)/files/etc $(1)/
-endef
-
 # call BuildPackage - OpenWrt buildroot signature

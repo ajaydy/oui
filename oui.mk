@@ -38,6 +38,10 @@ define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/install
+    if [ -d $(PKG_BUILD_DIR)/files/etc ]; then \
+        $(INSTALL_DIR) $(1)/etc; \
+        $(CP) -r $(PKG_BUILD_DIR)/files/etc/* $(1)/etc/; \
+    fi
 	if [ -d $(PKG_BUILD_DIR)/htdoc/dist ]; then \
 		$(INSTALL_DIR) $(1)/www/views; \
 		$(CP) $(PKG_BUILD_DIR)/htdoc/dist/* $(1)/www/views; \
