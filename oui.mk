@@ -38,21 +38,40 @@ define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/install
-    if [ -d $(PKG_BUILD_DIR)/files/etc ]; then \
-        $(INSTALL_DIR) $(1)/etc; \
-        $(CP) -r $(PKG_BUILD_DIR)/files/etc/* $(1)/etc/; \
-    fi
-	if [ -d $(PKG_BUILD_DIR)/htdoc/dist ]; then \
-		$(INSTALL_DIR) $(1)/www/views; \
-		$(CP) $(PKG_BUILD_DIR)/htdoc/dist/* $(1)/www/views; \
+	@echo ">>> Starting install for $(PKG_NAME)"
+
+	if [ -d ./files/etc ]; then \
+		echo ">>> Found ./files/etc, installing to $(1)/etc"; \
+		$(INSTALL_DIR) $(1)/etc; \
+		$(CP) -rv ./files/etc/* $(1)/etc/; \
+	else \
+		echo ">>> ./files/etc not found, skipping etc install"; \
 	fi
+
+	if [ -d $(PKG_BUILD_DIR)/htdoc/dist ]; then \
+		echo ">>> Copying dist to $(1)/www/views"; \
+		$(INSTALL_DIR) $(1)/www/views; \
+		$(CP) -rv $(PKG_BUILD_DIR)/htdoc/dist/* $(1)/www/views/; \
+	else \
+		echo ">>> $(PKG_BUILD_DIR)/htdoc/dist not found, skipping view install"; \
+	fi
+
 	if [ -f ./files/menu.json ]; then \
+		echo ">>> Installing menu.json to $(1)/usr/share/oui/menu.d"; \
 		$(INSTALL_DIR) $(1)/usr/share/oui/menu.d; \
 		$(INSTALL_CONF) ./files/menu.json $(1)/usr/share/oui/menu.d/$(APP_NAME).json; \
+	else \
+		echo ">>> ./files/menu.json not found, skipping menu"; \
 	fi
+
 	if [ -d ./files/rpc ]; then \
-		$(CP) ./files/rpc $(1)/usr/share/oui/rpc; \
+		echo ">>> Copying rpc to $(1)/usr/share/oui/rpc"; \
+		$(INSTALL_DIR) $(1)/usr/share/oui/rpc; \
+		$(CP) -rv ./files/rpc/* $(1)/usr/share/oui/rpc/; \
+	else \
+		echo ">>> ./files/rpc not found, skipping rpc"; \
 	fi
 endef
+
 
 $(eval $(call BuildPackage,$(PKG_NAME)))

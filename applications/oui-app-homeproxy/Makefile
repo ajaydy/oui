@@ -10,10 +10,6 @@ APP_TITLE:=OUI built-in homeproxy
 APP_NAME:=homeproxy
 
 APP_DEPENDS  := +sing-box +firewall4 +kmod-nft-tproxy
-APP_CONFFILES := /etc/config/homeproxy \
-                 /etc/homeproxy/certs/ \
-                 /etc/homeproxy/resources/ \
-                 /etc/homeproxy/ruleset/
 include ../../oui.mk
 
 # call BuildPackage - OpenWrt buildroot signature

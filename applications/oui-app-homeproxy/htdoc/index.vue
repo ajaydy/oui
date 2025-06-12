@@ -71,25 +71,25 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 
-const busy  = ref(false)
-const form  = reactive({ routing_mode: 'bypass_mainland_china', auto_update: false })
+const busy = ref(false)
+const form = reactive({ routing_mode: 'bypass_mainland_china', auto_update: false })
 const nodes = ref([])
 
-const load = async () => {
-  const { cfg } = await $oui.call('homeproxy', 'get')
+const load = async() => {
+  const { cfg } = await this.$oui.call('homeproxy', 'get')
   Object.assign(form, cfg.config[0] || {})
   nodes.value = cfg.nodes || []
 }
 
-const save = async (apply) => {
+const save = async(apply) => {
   busy.value = true
-  await $oui.call('homeproxy', 'set', {
+  await this.$oui.call('homeproxy', 'set', {
     config: form,
     nodes: nodes.value,
     apply
   })
   busy.value = false
-  $oui.toast.success(apply ? 'Saved & applied!' : 'Saved!')
+  this.$oui.toast.success(apply ? 'Saved & applied!' : 'Saved!')
 }
 
 const addNode = () => {
@@ -100,6 +100,6 @@ onMounted(load)
 </script>
 
 <style scoped>
-/* small helper if Tailwind not present */
+
 .border { border: 1px solid rgb(203 213 225); }
 </style>
